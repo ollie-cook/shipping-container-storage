@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{backgroundImage: "url('/layered-peaks-haikei.svg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
         {children}
       </body>
     </html>

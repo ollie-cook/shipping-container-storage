@@ -13,8 +13,9 @@ interface ShippingContainerProps {
 export default function ShippingContainer(props: ShippingContainerProps) {
   const [title, setTitle] = useState(props.container.title)
   const [colour, setColour] = useState(props.container.colour)
+  const [textColour, setTextColour] = useState(props.container.text_colour)
 
-  const updateContainer = (newTitle?: string, newColour?: string) => {
+  const updateContainer = (newTitle?: string, newColour?: string, newTextColour?: string) => {
     if (newTitle != undefined) {
       setTitle(newTitle)
     }
@@ -25,7 +26,8 @@ export default function ShippingContainer(props: ShippingContainerProps) {
     const updatedContainer = {
       id: props.container.id,
       title: newTitle || props.container.title,
-      colour: newColour || props.container.colour
+      colour: newColour || props.container.colour,
+      text_colour: newTextColour || props.container.text_colour
     }
 
     props.update(updatedContainer)
@@ -39,12 +41,12 @@ export default function ShippingContainer(props: ShippingContainerProps) {
     <div className={`flex items-center justify-center w-full aspect-[4.7] relative ${props.className} ${colour}`}>
       <img src="/container-background.png" className="absolute w-full" />
       <div className="absolute top-2 right-0 flex flex-col gap-2">
-        <EditButton title={title} colour={colour} updateContainer = {(title?: string, colour?: string) => updateContainer(title, colour)} />
+        <EditButton title={title} colour={colour} textColour={textColour} updateContainer = {(title?: string, colour?: string, text_colour?: string) => updateContainer(title, colour, text_colour)} />
         <button className="flex justify-center items-center" onClick={deleteContainer}>
           <MdDelete className="w-5 h-5" />
         </button>
       </div>
-      <h1 className="text-5xl font-bold z-10">{title}</h1>
+      <h1 className={`text-5xl font-bold z-10 ${props.container.text_colour}`}>{title}</h1>
     </div>
   )
 }
