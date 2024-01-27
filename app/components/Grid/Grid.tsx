@@ -11,7 +11,7 @@ export default function Grid() {
   useEffect(() => {
     if (Cookies.get('shipping-containers') == undefined) {
       const guid = crypto.randomUUID()
-      setContainers([{id: guid, title: "Shipping Container", colour: "bg-[#cc4d4e]", text_colour: "text-white"}])
+      setContainers([{id: guid, title: "Shipping Container", colour: "bg-[#cc4d4e]", text_colour: "text-black"}])
       Cookies.set('shipping-containers', JSON.stringify(containers))
     } else {
       setContainers(JSON.parse(Cookies.get('shipping-containers') || ''))
