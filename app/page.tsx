@@ -1,12 +1,9 @@
-import ShippingContainer from "./components/ShippingContainer";
+import Grid from "./components/Grid";
 
 export default function Home() {
   return (
-    <main className="min-h-screen grid grid-cols-10 content-end px-6">
-      <ShippingContainer className="col-span-5"/>
-      <ShippingContainer className="col-span-5"/>
-      <ShippingContainer className="col-span-5"/>
-      <ShippingContainer className="col-span-5"/>
+    <main>
+      <Grid />
     </main>
   );
 }

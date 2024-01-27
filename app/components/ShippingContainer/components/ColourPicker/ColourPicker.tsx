@@ -36,7 +36,7 @@ function ColourOption(props: ColourOptionProps) {
   return (
     <button 
       className={`h-6 aspect-square rounded-lg ${props.colour}`}
-      onClick={handleClick}
+      onClick={(event) => handleClick(event)}
     >
 
     </button>
