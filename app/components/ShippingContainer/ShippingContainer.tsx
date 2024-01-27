@@ -38,7 +38,7 @@ export default function ShippingContainer(props: ShippingContainerProps) {
   }
 
   return (
-    <div className={`flex items-center justify-center w-full aspect-[4.7] relative ${props.className} ${colour}`}>
+    <div className={`flex items-center justify-center aspect-[4.7] relative ${props.className} ${colour}`}>
       <img src="/container-background.png" className="absolute w-full" />
       <div className="absolute top-2 right-0 flex flex-col gap-2">
         <EditButton title={title} colour={colour} textColour={textColour} updateContainer = {(title?: string, colour?: string, text_colour?: string) => updateContainer(title, colour, text_colour)} />
