@@ -6,31 +6,41 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import Cookies from "js-cookie";
 
 export default function Grid() {
-  const [containers, setContainers] = useState([{id: 1, title: "Shipping Container", colour: "bg-[#cc4d4e]"}])
+  const [containers, setContainers] = useState<any[]>([])
 
   useEffect(() => {
     if (Cookies.get('shipping-containers') == undefined) {
+      setContainers([{id: 1, title: "Shipping Container", colour: "bg-[#cc4d4e]"}])
       Cookies.set('shipping-containers', JSON.stringify(containers))
-      console.log('no cookies')
     } else {
       setContainers(JSON.parse(Cookies.get('shipping-containers') || ''))
-      console.log(JSON.parse(Cookies.get('shipping-containers') || ''))
-      console.log('cookies')
     }
   }, [])
 
   useEffect(() => {
     //set the cookie
-    console.log("containers updated")
-    console.log(containers)
     Cookies.set('shipping-containers', JSON.stringify(containers))
   }, [containers])
 
+  const updateContainer = (newContainer: any, deleteContainer?: boolean) => {
+    console.log("go there" + deleteContainer)
+    if (deleteContainer != true) {
+      const newContainers = containers.map(container => 
+        container.id === newContainer.id ? newContainer : container
+      )
+      setContainers(newContainers);
+    } else {
+      console.log("delete")
+      const newContainers = containers.filter(container => container.id !== newContainer.id)
+      setContainers(newContainers);
+    }
+  }
+
   return (
-    <div className="min-h-screen grid grid-cols-10 content-end px-6">
+    <div className="w-full flex flex-wrap-reverse justify-end content-end px-6">
       {
         containers.map(container => (
-          <ShippingContainer title={container.title} colour={container.colour} className="col-span-5" key={container.id} />
+          <ShippingContainer container={container} update={(container, deleteContainer) => updateContainer(container, deleteContainer)} className="w-1/2 shrink-0" key={container.id} />
         ))
       }
       <AddShippingContainer onClick={(value) => setContainers(value)} containers={containers} />
@@ -47,7 +57,6 @@ function AddShippingContainer(props: AddShippingContainerProps) {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    //Cookies.set('shipping-containers', 'test')
 
     const newContainer = {
       id: props.containers.length + 1,
@@ -59,7 +68,7 @@ function AddShippingContainer(props: AddShippingContainerProps) {
   }
 
   return (
-    <div className="w-full aspect-[4.7] flex justify-center items-center col-span-5">
+    <div className=" aspect-[4.7] flex justify-center items-center w-1/2">
       <button onClick={handleClick}>
         <IoIosAddCircleOutline className = "h-16 w-16" />
       </button>
