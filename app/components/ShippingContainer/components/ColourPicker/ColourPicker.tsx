@@ -14,8 +14,8 @@ export default function ColourPicker(props: ColourPickerProps) {
   return (
     <div className="flex mt-1 gap-2">
       {
-        props.colourOptions?.map(colour => (
-          <ColourOption colour={colour} updateContainer={props.updateContainer} isTextColour={props.isTextColourPicker} />
+        props.colourOptions?.map((colour, index) => (
+          <ColourOption colour={colour} updateContainer={props.updateContainer} isTextColour={props.isTextColourPicker} key={index} />
         ))
       }
     </div>
