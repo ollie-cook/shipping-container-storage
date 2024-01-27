@@ -10,7 +10,8 @@ export default function Grid() {
 
   useEffect(() => {
     if (Cookies.get('shipping-containers') == undefined) {
-      setContainers([{id: 1, title: "Shipping Container", colour: "bg-[#cc4d4e]"}])
+      const guid = crypto.randomUUID()
+      setContainers([{id: guid, title: "Shipping Container", colour: "bg-[#cc4d4e]"}])
       Cookies.set('shipping-containers', JSON.stringify(containers))
     } else {
       setContainers(JSON.parse(Cookies.get('shipping-containers') || ''))
@@ -58,8 +59,10 @@ function AddShippingContainer(props: AddShippingContainerProps) {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
+    const guid = crypto.randomUUID()
+
     const newContainer = {
-      id: props.containers.length + 1,
+      id: guid,
       title: "Shipping Container",
       colour: "bg-[#cc4d4e]"
     }

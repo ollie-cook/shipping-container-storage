@@ -18,7 +18,7 @@ export default function EditButton (props: EditButtonProps) {
     <Popover>
       <PopoverTrigger>
         <button className="flex justify-center items-center">
-          <MdEdit className="w-6 h-6" />
+          <MdEdit className="w-5 h-5" />
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-80 absolute -right-2">

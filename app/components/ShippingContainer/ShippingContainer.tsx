@@ -32,19 +32,19 @@ export default function ShippingContainer(props: ShippingContainerProps) {
   }
 
   const deleteContainer = () => {
-    console.log("fucking ")
     props.update(props.container, true)
   }
 
   return (
     <div className={`flex items-center justify-center w-full aspect-[4.7] relative ${props.className} ${colour}`}>
-      <div className="absolute top-2 right-2 flex gap-2">
+      <img src="/container-background.png" className="absolute w-full" />
+      <div className="absolute top-2 right-0 flex flex-col gap-2">
         <EditButton title={title} colour={colour} updateContainer = {(title?: string, colour?: string) => updateContainer(title, colour)} />
         <button className="flex justify-center items-center" onClick={deleteContainer}>
-          <MdDelete className="w-6 h-6" />
+          <MdDelete className="w-5 h-5" />
         </button>
       </div>
-      <h1 className="text-2xl font-bold">{title}</h1>
+      <h1 className="text-5xl font-bold z-10">{title}</h1>
     </div>
   )
 }
